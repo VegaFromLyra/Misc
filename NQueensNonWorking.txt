@@ -1,0 +1,84 @@
+// Print N queens
+
+// Find a single combination for a N x N chessboard 
+// where N queens can be placed together
+void SolveNQueens(bool [,] ChessBoard, int N)
+{
+    int rows = new int[N];
+
+    int columns = new int[N]; 
+
+    // 
+}
+
+
+bool IsValid(int rows[], int columns[], int N)
+{
+   // Check rows
+   bool rowBitSet = new bool[N]; 
+   for(int i = 0; i < N; i++)
+   {
+      if (rowBitSet[row[i]] == false)
+      {
+          rowBitSet[row[i]] = true;
+      }
+      else
+      {
+          return false;
+      }
+   }
+
+   // Check columns
+   bool columnBitSet = new bool[N]; 
+   for (int i = 0; i < N; i++)
+   {
+       if (columnBitSet[column[i]] == false)
+       {
+           columnBitSet[column[i]] = true; 
+       }
+       else
+       {
+           return false;
+       }
+   }
+
+   // Check reverse diagonal
+   bool reverseDiagonalBitSet = new bool[2 * N - 2]; 
+
+   for(int i = 0; i < N; i++)
+   {
+       int value = rows[i] - columns[i] + (N - 1); 
+
+       if (reverseDiagonalBitSet[value] == false)
+       {
+            reverseDiagonalBitSet[value] = true;
+       }
+       else
+       {
+           return false; 
+       }                     
+   }
+
+   // Check forward diagonal
+
+   bool forwardDiagonalBitSet = new bool[2 * N - 2]; 
+   for(int i = 0; i < N; i++)
+   {
+       int value = rows[i] + columns[i]; 
+
+       if (forwardDiagonalBitSet[value] == false)
+       {
+            forwardDiagonalBitSet[value] = true;
+       }
+       else
+       {
+           return false; 
+       }                     
+   }
+  
+   return true;
+}
+    
+   
+// Find ALL combinations to place N queens on a N x N chessboard
+

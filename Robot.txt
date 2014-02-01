@@ -1,0 +1,2 @@
+Imagine a robot sitting on the upper left of an X by Y grid. The robot can only move in 2 directions: right and down. How many possible paths are there for the robot to go from
+(0, 0) to (x, Y) ?

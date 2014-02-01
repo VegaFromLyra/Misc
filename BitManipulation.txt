@@ -1,0 +1,36 @@
+// N and M are 32 bit numbers
+// i and j are bit positions
+// Insert M into N such that M starts at bit j and ends bit i
+// assume bits j through i have enough space to fit all of M
+
+EXAMPLE:
+
+N = 10000000000
+M = 10011
+i = 2
+j = 6
+
+N = 10001001100 
+
+
+// Print modified N
+void InsertBits(int M, int N, int i, int j)
+{
+   // Make a mask of 32 bits with bits j through i set to 1
+   int rightMask = 0;
+   rightMask = ~rightMask;
+   rightMask = ~(rightMask << i);  // 0000000011
+
+   int leftMask = 0;
+   leftMask = ~leftMask;  
+   leftMask << (j + 1); // 11110000000
+
+   int mask = rightMask | leftMask; // 11110000011
+   mask = ~mask;                    // 00001111100
+
+   N = N | mask;     // 10001111100
+
+   N = N | M;        // 10001001100;
+
+   Console.Writeline("Modified N is {0}", N);   
+}

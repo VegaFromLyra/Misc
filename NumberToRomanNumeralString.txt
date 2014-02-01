@@ -1,0 +1,131 @@
+Symbol	Value
+I	1
+V	5
+X	10
+L	50
+C	100
+D	500
+M	1,000
+
+
+The symbols "I", "X", "C", and "M" can be repeated three times in succession, but no more. (They may appear more than three times if they appear non-sequentially, such as XXXIX.) "D", "L", and "V" can never be repeated.[7][8]
+"I" can be subtracted from "V" and "X" only. "X" can be subtracted from "L" and "C" only. "C" can be subtracted from "D" and "M" only. "V", "L", and "D" can never be subtracted[8]
+Only one small-value symbol may be subtracted from any large-value symbol
+
+If smaller numbers follow larger numbers, the numbers are added. For example, the Roman numeral XII calls for the addition of ten and two, resulting in the value of twelve. 
+
+If a smaller number precedes a larger number, the smaller number is subtracted from the larger. For example, the Roman numeral IIX calls for th
+
+Solution 1: (incomplete)
+
+string ConvertNumberToRomanNumeralString(unsigned int n)
+{
+  // If 0 then return null 
+
+  list<unsigned int> digits;
+
+  unsigned int digit = 0;
+
+  while (n > 0)
+  {
+     digit = n % 10;
+     digits.insert(digit);
+     n = n / 10;
+  }
+
+  int count = 0;
+  string result;
+  string romanNumber;
+  for (list<unsigned int>::iterator iter = digits.begin(); iter != digits.end(); iter++)
+  {
+    romanNumber = ConvertNumberToRomanNumber((*iter) * pow(10, count));
+    if (result.IsEmpty())
+    {
+	result.assign(romanNumber.c_str());
+    }
+    else
+    {
+        romanNumber.append(result.c_str()); 
+        result.assign(romanNumber.c_str());
+    }
+     
+  }
+
+  return result;
+
+}
+
+string GetRomanRepresentation(unsigned int n)
+{
+   if (n == 1)
+     return I;
+   else if (n >= 1 && n <= 4)
+   {
+   }
+   else if (n == 5)
+    return V;
+   else if (n >= 6 && n <= 9)
+   {
+   }
+   else if (n == 10)
+   {
+     return X;
+   }
+   else if (n >= 11 && n <= 49)
+   {
+   }
+   else if (n == 50)
+   {
+     return L; 
+   }
+   else if (n >= 51 && n <= 99)
+   {
+         
+   }
+}
+
+Solution 2: (from web)
+#include <iostream>
+#include <string>
+ 
+std::string to_roman(int value)
+{
+  struct romandata_t { int value; char const* numeral; };
+  static romandata_t const romandata[] =
+     { 1000, "M",
+        900, "CM",
+        500, "D",
+        400, "CD",
+        100, "C",
+         90, "XC",
+         50, "L",
+         40, "XL",
+         10, "X",
+          9, "IX",
+          5, "V",
+          4, "IV",
+          1, "I",
+          0, NULL }; // end marker
+ 
+  std::string result;
+  for (romandata_t const* current = romandata; current->value > 0; ++current)
+  {
+    while (value >= current->value)
+    {
+      result += current->numeral;
+      value  -= current->value;
+    }
+  }
+  return result;
+}
+ 
+int main()
+{
+  for (int i = 1; i <= 4000; ++i)
+  {
+    std::cout << to_roman(i) << std::endl;
+  }
+}
+
+
+

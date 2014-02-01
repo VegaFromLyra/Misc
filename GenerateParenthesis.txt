@@ -1,0 +1,110 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GenerateParenthesis
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //HashSet<string> result = GetAllParenthesis(3);
+
+            //foreach (string str in result)
+            //{
+            //    Console.WriteLine(str);
+            //}
+
+            List<string> result2 = GetAllParenthesis2(2);
+
+            foreach (string str in result2)
+            {
+                Console.WriteLine(str);
+            }
+
+        }
+
+        // First approach, easy to follow but has some inefficieny
+        static HashSet<string> GetAllParenthesis(int n)
+        {
+            HashSet<string> result = new HashSet<string>();
+
+            if (n == 1)
+            {
+                result.Add("()");
+                return result;
+            }
+            else
+            {
+                HashSet<string> subset = GetAllParenthesis(n - 1);
+
+                foreach (string str in subset)
+                {
+                    StringBuilder sb = new StringBuilder(str);
+                    sb.Append("()");
+                    result.Add(sb.ToString());
+
+                    for (int i = 0; i < str.Length; i++)
+                    {
+                        if (str[i] == ')')
+                        {
+                            string s = insertInside(str, i);
+                            result.Add(s);
+                        }
+                    }
+                }
+
+                return result;
+            }
+        }
+
+        static string insertInside(string str, int i)
+        {
+            StringBuilder sb = new StringBuilder(str);
+            sb.Insert(i, "()");
+            return sb.ToString();
+        }
+
+        // Second approach, hard to follow but is more efficient
+
+        static List<string> GetAllParenthesis2(int count)
+        {
+            char[] str = new char[count * 2];
+
+            List<string> list = new List<string>();
+
+            AddParenthesis(list, count, count, str, 0);
+
+            return list;
+        }
+
+        private static void AddParenthesis(List<string> list, int leftRem, int rightRem, char[] str, int count)
+        {
+            if (leftRem < 0 || rightRem < 0)
+            {
+                throw new Exception("Invalid input");
+            }
+            else if (leftRem == 0 && rightRem == 0)
+            {
+                String s = new String(str);
+                list.Add(s);
+            }
+            else
+            {
+                if (leftRem > 0)
+                {
+                    str[count] = '(';
+                    AddParenthesis(list, leftRem - 1, rightRem, str, count + 1);
+                }
+
+                if (rightRem > leftRem)
+                {
+                    str[count] = ')';
+                    AddParenthesis(list, leftRem, rightRem - 1, str, count + 1);
+                }
+            }
+        }
+    }
+}

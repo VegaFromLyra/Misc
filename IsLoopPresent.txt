@@ -1,0 +1,31 @@
+// Detect if there is a loop in the list 
+
+bool IsLoopPresent(Node head)
+{
+   if (head == null)
+   {
+      return false;
+   }
+
+   Node slow = head;
+   Node fast = head.Next; 
+
+   if (fast == null)
+   {
+       return false; 
+   }   
+   
+   while (fast != null && slow < fast)
+   {
+       slow = slow.Next;
+       fast = fast.Next;
+   }
+   
+   if (fast == null)
+   {
+       return false; 
+   }
+   
+   return true;
+  
+}

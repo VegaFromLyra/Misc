@@ -1,0 +1,39 @@
+// Convert int to string
+
+string IntToString (int num)
+{
+   if (num == 0)
+   {
+       return "0";
+   }
+ 
+   bool IsNegative = false;
+
+   if (num < 0)
+   {
+      IsNegative = true;
+      num *= -1;
+   }
+
+   StringBuilder result = new StringBuilder("");
+
+   while (num > 0)
+   {
+       char digit  = (num % 10) + '0';
+
+       result.Append(digit);
+       
+       num /= 10;
+   }
+
+   if (IsNegative)
+   {
+      result.Append("-");
+   }
+ 
+   char[] reversedNumber = result.ToArray();
+
+   Array.Reverse(reversedNumber);
+
+   return reversedNumber.ToString();
+}

@@ -1,0 +1,16 @@
+        // Assuming Fibonacci series is 1 based index
+        // Time complexity - O(2 raised to power of n) - number of recursive calls for a given value of n
+        int ComputeNthFibonacciValue(int n)
+        {
+            if (n <= 0)
+            {
+                throw new Exception("Invalid argument exception");
+            }
+
+            if (n == 1 || n == 2)
+            {
+                return 1;
+            }
+
+            return ComputeNthFibonacciValue(n - 1) + ComputeNthFibonacciValue(n - 2);
+        }

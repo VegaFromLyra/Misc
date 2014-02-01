@@ -1,0 +1,203 @@
+Interesting interview questions I've been asked. Not writing down all of them, just the ones that were interesting.
+
+
+
+
+WalmartLabs:
+
+Phone screen: 
+ - 
+
+Given a number N, return an N x N array filled out clockwise. 
+ - 
+Ex 3: 
+      1  2  3 
+      8  9   4
+      7   6  5
+
+-
+
+You're given an array with N integers. Only possible values for the integers are 0, 1 and 2. How can you sort them. 
+- Now, instead of integers, the array has N objects, where each object has a color that can either be 0, 1 or 2. Sort by color. (Use 3 linked lists). 
+- Now sort using constant memory (use 3 pointers. Hint: imagine there were only 2 possible colors 0 and 1). 
+
+On site:
+ - Given a string, find the longest palindrome in the string. 
+ - Design a web crawler. Focused on a system to fetch links. Do not worry about loops etc. Have to obey a throttling policy per domain. I described token bucket throttle. Had to code up token bucket throttle on a single host. 
+ 
+Ebay:
+
+On site:
+ - You are sitting on the side of the road, watching cars go by. The probability of seeing at least 1 car in 30 minutes is .95. What is the probability of seeing at least 1 car in 10 minutes? 
+
+- Implementing a counting semaphore given a binary semaphore. (Cannot actually do this correctly. Interesting in that to realize that you have to demonstrate a good understanding of multi-threaded concepts). 
+
+- Validate that a binary tree is a bst. 
+- Given BST, and a node (which has a parent pointer), find next largest
+
+Really interesting and one that I struggled with
+- Implement following interface:
+uint32 getHandle();
+void release(uint32); 
+
+Contract is that getHandle will not return a number if it has already been handed out and not released yet. Want a memory efficient solution. 
+
+I came up with a bitmap to represent all numbers and mark ones that have been handed out. Struggled to improve on linear search. Simply didn't think of binary search, kept trying to find a constant time solution. 
+
+Got hint towards binary search. Then question was, how much memory do we need to store counts for left and right at each level? How many levels? 
+
+Hinted towards do linear scan once data fits in cache line, say 128K. So, how many nodes in tree then? 128K is 2^17. So, 2^32/2^17 = 2^15. That many nodes at the bottom level, and also that many  intermediate nodes. Need 2 counters per inner node, each counter is 4 bytes. So, need 2^15 * 8 bytes = 2^15*2^3 = 2^18 bytes = 2^8 * 2^10 = 256KB of memory for counters. I struggled to do this math! 
+
+Now, how do we make this thread safe. I was coming up with a solution that required a lock at each level. getHandle() and release start from top down, lock, increase / decrease counter, unlock. and then proceed to next level. Can do with 1 lock at root and have getHandle start top down, and release start bottom up. Assume atomic increment / decrement for integers. 
+
+Now, code helper function that scans a part of the bit map array to find an empty integer. 
+
+uin32 get_handle(uint32 from, uint32 end) ; 
+
+I defined bitmap as byte[] bit_map; Would have been better to do uint32[] bit_map;
+
+
+Apptio:
+
+First day was basic stuff - BlockingQueue, some straightforward graph traversals. 
+
+Day two was more interesting. All Java concurrency stuff.
+
+LRUCache:
+ - Sweet. Right up my alley. Talked about how to make it concurrent. Providing k-way concorrency by partitioning over k was good enough. Mentioned that fine grain locking would probably cause too much contention. 
+
+ConcurrentHash:
+ - How do we make a hash table concurrent. And not just striping / partitioning. Want to make the actual map concurrent. 
+
+Pascal triangle:
+ - implement a function to return a pascal triangle of depth k. Had to define return type. 
+    Came up with a 2d array first. wrote code. 
+   - can we reduce storage complexity? - Went down all sorts of optimizations to do that. 
+   - How can we make concurrent now? 
+
+
+Microsoft:
+Phone screens:
+
+- Have a web service with a bunch of hosts. Want to load balance requests between the hosts. How can you do that? 
+- Have a large dictionary of words with their meanings. Say ~10T worth of data. How can we find the meaning of a given word? After I suggested BTree, asked how we would build that. 
+
+Opscode:
+
+* Design a URL shortener. 
+
+Google:
+
+Day 1:
+
+- You are implementing a service that is responsible for handing out phone numbers. You have to implement the following apis:
+
+bool isTaken(string number)
+void markAsTaken(string number)
+string giveMeFreeNumber()
+
+Ignore all the service design stuff. What data structure would you use to implement the above apis. 
+
+- We want to add 2 numbers. Except, one of the numbers is really big and we represent it as a string: "9132343" etc. The other is small and is an int. 
+You need to implement String add(String largeNum, int smallNum). 
+
+- A complete binary tree is one in which each node has either 0 children or 2 children. We want to come up with an encoding scheme that captures the shape of the tree. Don't worry about the values of the nodes. What encoding can you come up with? 
+Came up with 0 for node with no children, and 1 for node with both. Described how to encode, decode using DFS. 
+So, this solution uses N bits for a tree with N nodes. Can you come up with a more compact representation? Open ended question. 
+
+- Word golf. Given a dictionary, and a begin word and end word, return path from begin word to end word. can only make a single letter change at a time and new word has to be in the dictionary. free to pre-process the dictionary. 
+
+- void Defer(Action callback, Time timeToCallback). Defer is non-blocking. Records callback and invokes it at timeToCallback. How would you implement this?
+
+- Boggle
+
+- given string: "aaabbbccc" (null terminated), replace all consecutive occurrences by single char in place. So becomes: "abc" null terminated. 
+- Hard question: City grid of avenues and street. People spread all over. Find "optimal" meeting point for them. -- Struggled a lot and didn't make much meaningful progress.
+
+
+Nutanix:
+
+Phone screen:
+Imagine a system like HDFS. Two types of nodes. NameNode (master) and DataNodes. Protocol for write is client talks to name node to ask for a list of data nodes to which it should write to. Describe how you would design the name node to answer this question. What concerns would you try to satisfy when picking data nodes for a write and how would you go about actually satisfying those concerns. -- Very interesting discussion. Guy I spoke to had worked on this area for GFS. 
+
+Twitter:
+
+Phone screen:
+Given a binary tree, we want to return the length of the longest path. Ex:
+     1
+   2   3
+       4 5
+
+In this case longest path is either 2-1-3-4 or 2-1-3-5. Either way, length is 4. No parent pointers. 
+
+My first solution assumed that the longest path is always through the root. Once I realized that was not the case, code was fairly straightforward. 
+
+My soln:
+public class Node {
+    private Node left;
+    private Node right;
+    private int maxDepth;   
+
+    public int getLongestPathLength() {
+        int leftMaxDepth = 0;
+        int rightMaxDepth = 0;
+        int childLongestPath = 0;
+      
+        if(left != NULL) {
+            childLongestPath = left.getLongestPathLength();  1
+            leftMaxDepth = left.maxDepth; 1
+        }
+        if(right != NULL) {
+            childLongestPath = Math.max(childLongestPath, right.getLongestPathLength()); 3
+            rightMaxDepth = right.maxDepth; 2
+        }
+        maxDepth = Math.max(leftMaxDepth, rightMaxDepth) + 1;
+        return Math.max(childLongestPath, leftMaxDepth + rightMaxDepth + 1);  
+    }
+} 
+
+
+Next question was an external sorting question. 
+
+Onsite:
+- stream of ints coming your way. at any point want to answer largest k ints seen so far (not keeping count. just the largest ints seen so far). use a min heap. then asked me to implement a heap. 
+- class design question. have a repository class. exposes simple get and getBatch api. Want to be able to plug in various underlying repos (mysql, file, base etc). Also want to be able to pick and choose other functionality, like a memcache wrapper, or an inproc cache, or logging, or stats collector etc. How would you go about designing this so that it's easy to pick and choose whatever combination I want. Fairly straightforward, since this is basically the decorator pattern (like in the java.io library). 
+- You have n steps. At any point, you can either take 1 step or 2 steps. How many ways are there to end up at the nth step? Asked me to think through it algorithmically and not worry about fancy math. wrote up recursive code. repeated sub-problems, so memorized result. finally realized that this is basically the fibonacci series! 
+- system design. Forget details, but essentially a caching system. exercise was about numbers and architecture. given tps number, latency number etc, how many machines, how much memory etc. 
+- talked about concurrent hash map and how that works. why do you need volatile? design a rate limiting system. wrote the token bucket algo. 
+
+
+Nutanix onsite:
+
+- A lot of questions about what exactly fork does internally. 
+- what exactly is happening when you do a read or write to a memory location, down in the kernel and processor. 
+- questions around false sharing between threads. 
+- why would you prefer using stack over heap? apart from automatic memory management, was looking for efficiency, since stack will probably be puled into cache and even onto registers. 
+- others that i don't remember. 
+
+PureStorage onsite:
+- buddy bitmap. 
+- void copy(char* src, char* dest, size_t count) {
+     while(cut--) *dest++ = *src++;
+   }
+   Given that code, said that in some cases, this fails deterministically. essentially, used him as a debugger to figure out that case was when dest is pointing somewhere in the middle of src. write up fixed version of code. 
+- Given a loop where we increment a shared variable x from 0 - 5, and there are 5 thread doing this, figure out min and max range of x at the end. 
+
+
+
+Box onsite:
+
+- lrucache
+- singly linked list with other pointer. create a deep copy
+- function to figure out if a number is prime. running time? optimizations: first was to stop after root n iterations. second, was if this is being called a lot, how can we optimize. caching. 32 bit ints, so just have a bitmap of all primes. 
+  problem now is, how do we generate all primes. write naive method. awl clock running time? make some assumptions about cycles, proc speed etc. mentioned sieve of eratostenes method. impressed, but didn't expect me to know that. 
+- design an elevator -- ugh. hate this one
+- system design. described their caching system, talked about problems with invalidations etc. 
+
+Dropbox onsite:
+
+- given a directory path. Want to return a list of sets of duplicate files. I asked if using md5sum is good enough to detect duplicity. He said, lets imagine its not (mostly so that I have to write more code). fairly straightforward
+- given a 7 digit number, return all valid english words. assume you have a dict. next version was, suppose you get catfirst. that is not a valid word, however, its made up of valid words. so, if that's the case, we still want to return it. simple recursion. Next optimization was suggesting to break out of loop early by doing prefix check on the dict. 
+- system design of a url shortener. again, given various numbers, get specific about how you would design system. 
+- design a web crawler. didn't want me to do architectural design. but instead write code to walk all pages in a domain, given a starting url. So, basically did a bfs walk. next was how to make this multi-threaded. 
+

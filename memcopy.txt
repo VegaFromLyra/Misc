@@ -1,0 +1,25 @@
+void memcopy(void* source, void* destination, int numberOfBits)
+{
+    if (source == NULL || destination == NULL || numberOfBits < 0)
+    {
+        throw ERROR;
+    }
+    
+    int numberOfBytes = numberOfBits / 8;
+    int remainingBits = numberOfBits % 8; 
+    
+    // TODO - Solve overflow condition
+    
+    while (numberOfBytes > 0)
+    {
+        *destination++ = *source++;
+        numberOfBytes--;
+    }
+    
+    // Copy over remaining bits. This is like the last bits
+    // Ensure the last byte in the destination is cleared
+    *destination = *destination & 0;
+    
+    char mask = -1 >> (8 - remainingBits);
+    *destination = *source & mask
+}

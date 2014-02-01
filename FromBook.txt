@@ -1,0 +1,22 @@
+2 32 bit numbers - N and M 
+2 bit positions i and j
+
+
+Insert M into N such that M starts at j and ends at i. 
+
+assume j through i should have space for M
+
+Example:
+
+N = 10000000000
+M = 10011
+i = 2
+j = 6
+
+N = 100010001100
+
+
+
+Given a real number between 0 and 1 (eg 0.72) that is passed as a double, print the binary representation. 
+If the number cannot be represented acurately in binary with at most 32 characters, print ERROR. 
+

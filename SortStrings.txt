@@ -1,0 +1,74 @@
+Given a file that contains many strings, how would you sort all strings in the file?  
+What is the time and space complexity?  
+How would you improve on the algorithm?  
+What about finding a string in the file?
+
+
+apple
+book
+cook
+
+
+dog
+deaf
+fool 
+
+
+altitude
+pear
+zoo 
+
+x, y, z 
+
+smallest = x < y ? x : y
+smallest = smallest < z ? smallest : z 
+
+output[index] = smallest
+
+class PriorityQueue
+{
+}
+
+string[] Sort(string[] list1, string[] list2, string[] list3)
+{
+    int index = 0; 
+
+    queue.Enqueue(list1[0]);
+    queue.Enqueue(list2[0]);
+    queue.Enqueue(list3[0]); 
+
+    i, j, k = 0;
+
+    while (!queue.empty())
+    {
+	string result  = queue.dequeue(); 
+
+	if (result == list1[i])
+	{
+            if ((i + 1) < list1.Length)
+            {
+	       queue.enqueue(list1[i + 1]);  
+               i++
+            }
+        }
+	else if(result == list2[j])
+	{
+            if ((j + 1) < list2.Length)
+            {
+	       queue.enqueue(list2[j + 1]);
+	       j++;
+            }
+	}
+	else if (result == list3[k])
+	{
+            if ((k + 1) < list3.Length)
+            {
+	       queue.enqueue(list3[k + 1]);
+	       k++
+            }
+	}
+
+        output.Add(result);                    
+    }
+
+}

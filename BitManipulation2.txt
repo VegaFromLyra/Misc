@@ -1,0 +1,60 @@
+// Given a postive integer, print the next smallest and next largest number 
+// that have the same number of 1's
+
+// Brute force approach
+
+void PrintSmallestAndLargest(int n)
+{
+   int numberOfOnes = GetNumberOfOnes(n);
+
+   bool done = false;
+
+   int currentN = n;
+   while (!done)
+   {
+       currentN++
+       if (GetNumberOfOnes(currentN) == numberOfOnes)
+       {
+           Console.WriteLine("Next largest number with same number of 1's is {0}", currentN);
+           done = true;
+       }
+   }
+
+   currentN = n;
+   done = false;
+
+   while (!done)
+   {
+        currentN--;
+        if (currentN == 0)
+        {
+            Console.WriteLine("Next smallest number is {0}", n);
+            done = true;
+        }
+        else
+        {
+            if (GetNumberOfOnes(currentN) == numberOfOnes)
+            {
+            	Console.WriteLine("Next smallest number is {0}", currentN);
+            	done = true;                 
+            }
+        }       
+   }
+}
+
+int GetNumberOfOnes(int num)
+{
+  int one = 1;
+  
+  int count = 0;  
+
+  while (num > 0)
+  {
+     if (num & 1)
+     {
+         count++;
+     }
+  
+     num >> 1;
+  }   
+}

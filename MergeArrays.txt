@@ -1,0 +1,35 @@
+// Given 2 sorted arrays a and b such that a has room at its end to fit b. 
+// Write code to merge the 2 arrays to result into a sorted array
+
+// lastA points to length of a that contains values
+// lastB is the length of b
+void Merge(int[] a, int[] b, int lastA, int lastB)
+{
+   int indexA = lastA - 1;
+   int indexB = lastB - 1;
+
+   int indexMerged = lastA + lastB - 1;
+
+   while (indexA >= 0 && indexB >= 0)
+   {
+      if (a[indexA] >= b[indexb])
+      {
+          a[indexMerged] = a[indexA]; 
+          indexMerged--;
+          indexA--; 
+      }
+      else
+      {
+         a[indexMerged] = b[indexB];
+         indexMerged--;
+         indexB--; 
+      }
+   }
+
+   while(indexB >= 0)
+   {
+      a[indexMerged] = b[indexB];
+      indexMerged--;
+      indexB--;
+   }
+}

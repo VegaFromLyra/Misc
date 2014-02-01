@@ -1,0 +1,80 @@
+size = 3
+
+Push(1)     top = 0
+Push(2)     top = 1
+Push(3)     top = 2
+Push(4)     top = 3
+Push(5)     top = 4
+Pop()-> 5   top = 3   
+Pop()-> 4   top = 2
+Pop()-> 3   top = 1
+Pop()-> 2   top = 0
+Pop()-> 1   top = -1
+
+Assert IsEmpty == true
+
+
+
+class SetOfStacks
+{
+   private int size;
+
+   private List<Stack<int>> stackList;
+
+   private int top;
+   
+   public SetOfStacks(int capacity)
+   {
+      size = capacity; 
+      top = -1;
+      stackList = new List<Stack<int>>();
+   }
+
+   public void Push(int plateId)
+   {
+       top++;
+
+       if ((stackList.Count == 0) || (top  % size == 0))
+       {
+           Stack<int> newStack = new Stack<int>();
+           stackList.Add(newStack); 
+       }
+
+       Stack<int> topStack = GetTopStack();
+
+       topStack.Push(plateId);
+   }
+
+   public int Pop()
+   {
+       if (top == -1)
+       { 
+          throw new Exception("No plates in stack");
+       }
+
+       Stack<int> topStack = GetTopStack();
+
+       int result = topStack.Pop();
+
+       if (topStack.IsEmpty())
+       {
+          stackList.Remove(top % size);
+       }
+
+       top--;
+       
+       return result;
+   }
+
+   private Stack<int> GetTopStack()
+   {
+       int index = top / size;
+
+       return stackList[index];
+   } 
+
+   public bool IsEmpty()
+   {
+      return top == -1;
+   }
+}

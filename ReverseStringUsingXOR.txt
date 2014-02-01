@@ -1,0 +1,19 @@
+string Reverse (string input)
+{
+   StringBuilder sb = new StringBuilder(input);
+
+   int start = 0;
+   int end = sb.Length - 1;
+ 
+   while (start < end)
+   {
+      sb[start] = (char)(sb[start] ^ sb[end]);
+      sb[end] = (char)(sb[start] ^ sb[end]);
+      sb[start] = (char)(sb[start] ^ sb[end]);
+
+      start++;
+      end--;
+   }
+
+   return sb.ToString();
+}

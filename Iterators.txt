@@ -1,0 +1,194 @@
+
+Given an iterator class, implement HasNext and GetNext
+
+#1 Iterator using inorder
+public class Iterator
+{
+     private Stack stack;
+
+     public Iterator (List<int> values)
+     {
+          Tree root = new Tree(values);          
+          stack = new Stack(); 
+
+          while (root != null)
+	  {
+              stack.push(root)
+              root = root.left
+          }
+     }
+     
+     public bool HasNext()
+     {
+         if (!stack.empty())                                  
+         {
+             return true;
+         }
+
+         return false; 
+     }   
+
+     public int GetNext()
+     {
+         if (stack.empty())
+         {
+             throw new Exception("error");
+         }
+
+         Node node = stack.Peek();
+
+         stack.Pop();
+
+         int result = node.value; 
+   
+         Node newRoot = node.right; 
+	 while (newRoot != null)
+         {
+             stack.push(newRoot);
+             newRoot = newRoot.left;   
+         }
+
+         return result;          
+     }     
+}
+
+#2 Iterator using pre order 
+
+public class Iterator
+{
+     private Stack stack;
+
+     public Iterator (List<int> values)
+     {
+          Tree root = new Tree(values);          
+          stack = new Stack(); 
+
+          while (root != null)
+	  {
+              stack.push(root)
+          }
+     }
+     
+     public bool HasNext()
+     {
+         if (!stack.empty())                                  
+         {
+             return true;
+         }
+
+         return false; 
+     }   
+
+     public int GetNext()
+     {
+         if (stack.empty())
+         {
+             throw new Exception("error");
+         }
+
+         Node node = stack.Peek();
+
+         stack.Pop();
+
+         int result = node.value; 
+
+	 if (node.right != null)
+         {
+            stack.push(node.right);
+         }
+
+         if (node.left != null)
+         {
+            stack.push(node.left);            
+         }   
+
+         return result;          
+     }     
+}
+
+#3 Iterator using post order 
+
+public class Iterator
+{
+     private Stack stack1;
+
+     private Stack stack2;
+
+     public Iterator (List<int> values)
+     {
+          Tree root = new Tree(values);          
+          stack1 = new Stack(); 
+          stack2 = new Stack(); 
+
+          if (root != null)
+          {
+              stack1.push(root);
+          }
+
+          while (!stack1.empty())
+	  {
+	      Node node = stack1.peek();
+              stack1.pop();
+
+	      stack2.Push(node); 
+
+              if (node.left != null)
+              {
+                  stack1.push(node.left);
+              }
+
+              if (node.right != null)
+              {
+                  stack1.push(node.right);
+              }                  
+          }
+     }
+     
+     public bool HasNext()
+     {
+         if (!stack2.empty())                                  
+         {
+             return true;
+         }
+
+         return false; 
+     }   
+
+     public int GetNext()
+     {
+         if (stack2.empty())
+         {
+             throw new Exception("error");
+         }
+
+         Node node = stack2.Peek();
+
+         stack2.Pop();
+
+         int result = node.value; 
+
+         return result;          
+     }     
+}
+
+
+while (!done)
+{
+    while (root is not null)
+    {
+        push root on stack
+        root = root->left
+    }
+
+    if (stack is empty)
+    {
+        done = true;
+    }
+    else
+    {
+        node = stack.peek()
+        print node.value
+        stack.pop()   
+        root = node.right
+    }
+}

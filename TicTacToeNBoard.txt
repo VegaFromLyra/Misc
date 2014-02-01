@@ -1,0 +1,102 @@
+enum Piece
+{
+    Empty,
+    O,
+    X
+};
+
+public class TicTacToe
+{
+    private int N;
+
+    private Piece board[,];
+   
+    public TicTacToe(int N)
+    {
+       this.N = N;
+    }
+ 
+    public void Init(Piece board[,])
+    {
+       this.board = board;
+    }
+
+    public Piece HasWon()
+    {
+        // Chek rows
+        for(int row = 0; row < N; row++)
+        {
+             if (board[row,0] != Piece.Empty)
+             {
+                 for (int col = 0; col < N - 1; col++)
+                 {
+                     if (board[row,col] != board[row, col+1])
+                     {
+                         break;
+                     }
+                 }
+
+                 if (col == N)
+                 {
+                     return board[row,0];
+                 }
+             }
+        }
+
+        // Check columns
+        for(int col = 0; col < N; col++)
+        {
+             if (board[0, col] != Piece.Empty)
+             {
+                 for(int row = 0; row < N - 1; row++)
+                 {
+                     if (board[row, col] != board[row + 1, col)
+                     {
+                        break;
+                     }
+                 }
+
+                 if (row == N)
+                 {
+                     return board[0, col];
+                 }        
+             }
+        }
+
+        // Check diagonal 1 where row == column
+        if (board[0,0] != Piece.Empty)
+        {
+           for(int i = 0; i < N - 1; i++)
+           {
+               if (board[i,i] != board[i + 1, i + 1])
+               {
+                   break;
+               }
+           }
+
+           if (i == N)
+           {
+               return board[0,0];
+           }          
+        }
+
+        // Check diagonal 2 where row + column == N - 1
+        if (board[N - 1][0] != Piece.Empty)
+        {
+           for(int row = N - 1, col = 0; row >=1 && col < N - 1; row--, col++)
+           {
+               if (board[row, col] != board[row - 1][col + 1])
+               {
+                   break;
+               }               
+           }
+
+           if (row == 0 && col == N)
+           {
+               return board[N - 1][0];
+           }    
+        }         
+
+        return Piece.Empty;     
+    } 
+}

@@ -1,0 +1,25 @@
+read-only int MAX = 4000; 
+
+int GetFibonacci(int number)
+{
+   int[] fibonacci = new int[MAX]; 
+
+   if (number == 0 )
+   {
+       return 0;
+   }
+
+   if (number == 1)
+   {
+      return 1; 
+   }
+
+   if (fibonacci[number] != 0)
+   {
+       return fibonacci[number]; 
+   }
+
+   fibonacci[number] = GetFibonacci(number - 1) + GetFibonacci(number - 2);
+
+   return fibonacci[number];
+}

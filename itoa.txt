@@ -1,0 +1,43 @@
+100
+0
+
+123
+
+if (number < 0)
+isNeg = true
+number *= -1
+else
+isNeg = false 
+
+string result;
+
+int digit = 0;
+
+if (number == 0)
+{
+  result.append("0");
+}
+else
+{
+	while (number > 0)
+	{
+   	   digit = number % 10 
+	   number = number / 10 
+	   digit += '0'
+	   char letter[2] = { 0 } 
+	   letter[0] = digit; 
+	   letter[1] = '\0'
+	   string lettertoadd(letter)
+	   result.append(lettertoadd)  
+	}
+
+        if (isNeg)
+ 	{
+           result.append("-")	      
+	}
+
+        result = string(result.rbegin(), result.rend())
+}
+
+return result 
+

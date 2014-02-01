@@ -1,0 +1,66 @@
+
+1] Solution 1: Check height at each node and then check difference of height between left and right
+   Time - O(n ^ 2)
+
+bool IsBalanced(Node root)
+{
+   if (root == null)
+   {
+      return true;
+   }
+
+   int leftHeight = GetHeight(root.Left);
+   int rightHeight = GetHeight(root.Right);
+
+   if (Math.abs(leftHeight - rightHeight) > 1)
+   {
+      return false;
+   }
+
+   return IsBalanced(root.Left) && IsBalanced(root.Right);
+}
+
+int GetHeight(Node n)
+{
+   if (n == null)
+   {
+      return 0;
+   }
+   
+   int leftHeight = GetHeight(n.Left);
+   int  rightHeight = GetHeight(n.right);
+
+   return (max(leftHeight, rightHeight) + 1);   
+}
+
+
+2] Solution 2: Use a method called 'CheckHeight' that gets height and also checks whether given node is balanced
+
+int checkHeight(Node n)
+{
+   if (n == null)
+   {
+      return 0;
+   }
+ 
+   int leftHeight = checkHeight(n.Left);
+
+   if (leftHeight == -1)
+   {
+      return -1;
+   }
+
+   int rightHeight = checkHeight(n.Right);
+
+   if (rightHeight == -1)
+   {
+      return -1; 
+   }
+
+   if (Math.Abs(leftHeight - rigthHeight) > 1)
+   {
+      return -1;
+   }
+
+   return max(leftHeight, rightHeight) + 1;   
+}

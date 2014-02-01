@@ -1,0 +1,64 @@
+void InorderIterative(Node root)
+{
+    Stack<Node> stack = new Stack<Node>();
+
+    bool done = false;
+
+    while (!done)
+    {
+       while (root != null)
+       {
+          stack.Push(root);
+          root = root.Left;
+       }
+
+       if (stack.Count == 0)
+       {
+          done = true;
+       }
+       else
+       {
+          Node topNode = stack.Pop();
+ 
+          Console.Write(topNode.Data);
+
+          if (topNode.Right != null)
+          {
+             root = topNode.Right;
+          }
+       }
+    }         
+}
+
+
+void PreOrderIterative(Node root)
+{
+    Stack<Node> stack = new Stack<Node>();
+
+    if (root != null)
+    {
+        stack.Push(root);
+    }
+
+    while (stack.Count > 0)
+    {
+       Node n = stack.Pop();
+       
+       Console.WriteLine(n.Data);
+  
+       if (n.Right != null)
+       {
+           stack.Push(n.Right);
+       }
+
+       if (n.Left != null)
+       {
+           stack.Push(n.Left);
+       }    
+    }
+}
+
+void PostOrderIterative(Node root)
+{
+   
+}

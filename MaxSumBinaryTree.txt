@@ -1,0 +1,22 @@
+int FindMaxSum(Node n)
+{
+    if (n == null)
+    {
+        return 0;
+    }
+    else if(n.left == null && n.right == null)
+    {
+        return n.Value;
+    }
+    else
+    {
+        int leftSum = FindMaxSum(n.left);
+        int rightSum = FindMaxSum(n.right):
+       
+        int result = n.Value; 
+
+        result += leftSum > rightSum ? leftSum : rightSum;
+
+	return result;
+    }
+}

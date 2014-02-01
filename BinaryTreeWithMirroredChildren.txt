@@ -1,0 +1,32 @@
+// to see if left and right trees are structurally mirrored 
+
+bool AreLeftAndRightSubTreesMirrored(Node root)
+{
+	if ((root.left != null) and (root.right != null)
+	{
+		return AreTreesMirrored(root.left, root.right); 
+	}
+	else
+	{
+		return false; 
+	}
+}
+
+bool AreTreesMirrored(Node rootNode1, Node rootNode2)
+{
+	if ((rootNode1 == null) and (rootNode2 == null))
+	{
+		return true; 
+	}
+	else if ((rootNode1 == null) || (rootNode2 == null))
+	{
+		return false;	
+	}
+	else
+	{
+		bool CheckLeftToRight = AreTreesMirrored(rootNode1.left, rootNode2.right);
+ 		bool CheckRightToLeft = AreTreeMirrored(rootNode1.right, rootNode1.left);
+	
+		return ( CheckLeftToRight && CheckRightToLeft );
+	}
+}

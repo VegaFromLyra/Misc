@@ -1,0 +1,69 @@
+// Given a directed graph determine if a
+// route is present between 2 given nodes
+
+psuedocode for node
+class Node
+{
+   int data;
+   List<Node> neighbors;
+   bool visited;
+}
+
+
+// Using DFS
+bool IsRoutePresent(Node origin, Node destination)
+{
+   if (origin == destination)
+   {
+      return true;
+   }
+
+   if (!origin.visited)
+   {
+      origin.visited = true;
+   }
+
+   foreach(Node n in origin.neighbors)
+   {
+      if (!n.visited)
+      {
+         if (IsRoutePresent(n, destination)
+         {
+            return true;
+         }
+      }
+   }
+   
+   return false;
+}
+
+// Using BFS
+
+bool IsRoutePresent(Node origin, Node destination)
+{
+   Queue<Node> queue = new Queue<Node>();
+
+   origin.visited = true;
+   queue.Enqueue(origin);
+
+   while (queue.Count > 0)
+   {
+      Node n = queue.Dequeue();
+
+      if (n == destination)
+      {
+         return true; 
+      } 
+
+      foreach(Node n in origin.neighbors)
+      {
+          if (!n.visited)
+          {
+              n.visited = true;
+              queue.Enqueue(n);
+          }  
+      }
+   }
+
+   return false;
+}

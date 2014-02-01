@@ -1,0 +1,31 @@
+bool IsBST(Node root)
+{
+  if (root == null)
+  {
+     throw new ArgumentException("Provide non empty tree");
+  }
+
+  return IsBSTHelper(root, Int32.Min, Int2.Max); 
+}
+
+bool IsBSTHelper(root, int min, int max)
+{
+
+  if (root == null)
+  { 
+    return true;
+  }
+  else if (root.left == null and root.right == null)
+  {
+    return (root.value >= min && root.value <= max) ? true : false; 
+  }
+  else
+  {
+    if (min < root.value && root.value < max)
+    {
+        return IsBSTHelper(root.left, min, root.value) && IsBSTHelper(root.right, root.value, max);
+    }
+
+    return false
+  }
+}

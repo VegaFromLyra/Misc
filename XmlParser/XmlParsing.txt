@@ -1,0 +1,26 @@
+
+No attributes
+No empty elements
+Just simple xml containing elements with text OR more nested elements (see sample below).
+Every Xml node represented by the following structure:
+Node
+name
+text
+list<Node> children
+Also given is a helper class called Tokenizer. It contains the following function:
+get_token()
+get_token() returns the next token in the input string. A token is represented by the following object:
+Token
+type    //BEGIN, TEXT, END
+value
+Given all of the above, use the tokenizer to parse the XML into a tree with every element represented by a "Node".
+The final output of the parse method of your solution should be Node (representing the root node of the XML tree).
+Sample XML:
+
+<a>    
+    <b>
+        <c>foo</c>
+        <c>bar</c>
+    </b>
+    <d>blah</d>
+</a>

@@ -1,0 +1,22 @@
+Given an image represented by a NxN matrix, where each pixel in the image is 4 bytes, write a method to rotate the image by 90 degrees. Can you do this in place.
+
+Questions:
+
+Percentile 
+Restful API
+Data Contract
+Regular expression
+Exponent (find time and space complexity)
+C# - what is internal, sealed, default access specifier, difference between struct and class
+What is linq, give example
+What encoding does String class use in C#
+what is an immutable class
+how does garbage collection work in C#
+ASCII vs Unicode
+What is powershell
+XML vs JSON
+StringToInt and IntToString in C#
+Pointers vs references
+How does a callstack work
+Go through syntax of instantiating single arrays, 2D arrays in c#
+Also go through reading and writing to files in C#

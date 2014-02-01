@@ -1,0 +1,54 @@
+Given a sudoku puzzle that is completed, check if the solution is valid
+
+
+bool IsValid (int[,] board, int n)
+{
+   // Check all rows
+   
+   for(int i = 0; i < n; i++)
+   {
+       HashSet<int> rowValues = new HashSet<int>();
+
+       for(int j = 0; j < n; j++)
+       {
+          if (rowValues.Add(board[i,j]) == false)
+          {
+             return false;
+          }
+       }
+   }
+
+   // Check all columns
+
+   for (int j = 0; j < n; j++)
+   {
+       HashSet<int> columnValues = new HashSet<int():
+
+       for(int i = 0; i < n; i++)
+       {
+          if (columnValues.Add(board[i, j]) == false)
+          {
+             return false; 
+          }
+       }
+   }
+
+   // Check all blocks
+
+   for (int i = 0; i < n; i += 3)
+   {
+      for(int j = 0; j < n; j += 3)
+      {
+           HashSet<int? blockValues = new HashSet<int>();
+
+           for (int k = 0; k < i + 3; k++)
+           {
+               for (int l = 0; l < j + 3; j++)
+               {
+                  
+               }
+           }
+      }
+   }
+    
+}

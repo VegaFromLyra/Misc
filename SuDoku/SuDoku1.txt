@@ -1,0 +1,71 @@
+Given a sudoku puzzle that is not completed yet, how to check whether the current input is valid.
+
+// assuming board cells can have values between 1-9 and empty
+// cells have a 0
+bool checkValid(int [][] board, int row, int col, int num, int n)
+{
+    HashSet<int> rowValues = new HashSet<int>():
+
+    for(int i = 0; i < n; i++)
+    {
+	if (board[row][i] != 0)
+        {
+           rowValues.Add(board[row][i];
+        }
+    }
+
+    bool numberPresentInRow = rowValues.Contains(num);
+
+    if (numberPresentInRow)
+    {
+        return false;   
+    }
+
+    HashSet<int> columnValues = new HashSet<int>();
+
+    for(int j = 0; j < n; j++)
+    {
+       if (board[j][column] != 0)
+       {
+           columnValues.Add(board[j][column]);
+       }
+    }   
+
+    bool numberPresentInColumn = columnValues.Contains(num);
+
+    if (numberPresentInColumn)
+    {
+         return false;
+    }
+
+    // Now check the 3 x 3 square surrounding this cell
+    int blockRowStart = 0;
+    int blockColumnStart = 0;
+    GetThreeByThreeBlock(row, col, ref blockRowStart, ref blockColumStart);
+
+    HashSet<int> threeByThreeBlockSet = new HashSet<int>();
+
+    for(int i = blockRowStart; i < 3; i++)
+    {
+       for(int j = blockColumnStart; j < 3; j++)
+       {
+           threeByThreeBlockSet.Add(board[i][j]);
+       }
+    }
+
+    bool IsNumberPresentInThreeByThreeBlock = threeByThreeBlockSet.Contains(num);
+
+    return !IsNumberPresentInThreeByThreeBlock;   
+}
+
+
+void GetThreeByThreeBlock(int currentRow, int currentCol, ref int blockRowStart, ref int blockColumnStart)
+{
+    int blockRow = currentRow / 3;
+
+    int blockColumn = currentCol / 3;
+
+    blockRowStart = blockRow * 3;
+    blockColumn = blockColumn * 3;     
+}
+

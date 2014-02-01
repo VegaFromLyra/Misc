@@ -1,0 +1,16 @@
+Implement an algo to delete a node in the middle of a single linked list:
+
+// This will not work will the last node needs to be deleted
+void Delete (Node n)
+{
+    Node previous = null;
+
+    while (n.Next != null)
+    {
+        Swap(n, n.Next); 
+        previous = n;
+        n = n.Next;         
+    } 
+
+    previous.Next = null; 
+}

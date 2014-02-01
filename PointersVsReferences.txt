@@ -1,0 +1,13 @@
+Pointers                           References 
+
+Have their own memory              Is a reference/alias for pre-existing memory
+
+Can be re-assigned                 Cannot be re-assigned after being initialised
+
+Can be null                        Cannot be null 
+
+Pointer arithmetic                 Arithmetic on references is equal to arithmetic on underlying object
+can be used to access
+a particular element in a array
+for instance (by doing arithmetic
+on address values)

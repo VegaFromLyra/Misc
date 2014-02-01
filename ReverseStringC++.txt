@@ -1,0 +1,14 @@
+// reverse a null termin  
+
+void reverse (char* str)
+{
+   char* start = str;
+   char* end = str;
+
+   while (end != NULL)
+   {
+       end++;
+   }
+
+   end-;
+}

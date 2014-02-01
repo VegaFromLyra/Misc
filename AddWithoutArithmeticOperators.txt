@@ -1,0 +1,38 @@
+Write a function that adds two numbers. Cannot use any arithemetic operators
+
+19
+18
+
+0001 0011
+0001 0010
+
+0000 0001 XOR
+
+0001 0010 AND (this is the carries, now left shift since carried are always carried over to the left)
+
+0010 0100 AND << 1
+
+recurse
+
+0000 0001
+0010 0100 
+
+0010 0101  XOR
+0000 0000  AND (no 1's left so nothing to carry)
+
+answer = 0010 0101 = 37
+
+int add (int a, int b)
+{
+   if (b == 0)
+   {
+       return a;
+   }
+
+   int sum = a ^ b;
+   int carry = (a & b) << 1;
+
+   return add (sum, carry);
+}
+ 
+

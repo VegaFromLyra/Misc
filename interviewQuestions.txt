@@ -1,0 +1,162 @@
+﻿* Implement itoa 
+  - account for negative numbers
+* 
+
+Change a tree so that the roles of the left and right pointers are swapped at every node. void mirror(struct node* node) - 
+swap at each level and then recurse
+
+Given a binary tree, find if the left and right subtrees are structurally mirrored
+* 
+- 
+Find the number in a two dimensional array that is sorted row wise and column wise
+
+*
+
+Code float to string (!) 
+* 
+
+Given a roman numeral, convert back to int - Signature: int RomanToInt( const std::string &roman )
+answer: http://rosettacode.org/wiki/Roman_numerals/Decode#C.2B.2B
+
+Find LCA of 2 nodes in a binary tree.
+* 
+Ans: using inorder and post order traversal
+
+Create a NAND gate using bit operators *
+bool Nand(bool input1, bool input2)
+{
+    return ~(input1 & input2);
+}
+
+Code up depth first search to find value in a Tree
+
+Do depth first search in reverse order
+answer: Do dfs as normal and then add to stack and then pop
+
+algorithm to print a binary tree level wise and that too from leaves to root (only 1 stack and one queue can be used)
+queue.push(n)
+
+while (queue is not empty)
+{
+   n = queue.top
+   queue.pop
+
+   rightChild = n.right
+   leftChild = n.left 
+
+   if (rightChild is not null)
+   {
+       queue.push(rightChild)
+   }
+
+   if (leftChild is not null)
+   {
+       queue.push(leftChild)
+   }
+
+   stack.push(n)
+}
+
+while (stack is not empty)
+{
+   n = stack.top
+   stack.pop
+   print n.data
+}
+
+Given a string, get the character that appears maximum # of times. - Get time and space complexity
+
+For a given binary tree, print level order nodes in reverse i.e Bottom to Top in different lines.
+
+Traverse a matrix in spiral order - http://stackoverflow.com/questions/7840389/print-2-d-array-in-spiral-order
+
+Get the max contiguous sum problem and then solve it
+
+Reverse a Linked list using recursion 
+
+Determine if a binary tree is a BST - Time and space complexity ? (Time - o(n), Space - O(1))
+
+Given a Binary Tree, find the largest subtree which is a BST 
+*  - Time and space complexity
+// Using IsBST on each node - O(nlogn) Space - O(1)
+// The O(n) solution is bottom up and the code is tricky
+
+What is the difference between balanced and complete binary tree ?
+
+Detecting loop in single linked list
+
+Clone a graph. Input is a Node pointer. Return the Node pointer of the cloned graph.
+
+Given a sudoku block, write a function to evaluate winning state 
+
+Model traffic lights for an intersection?  An write a function to operate it?
+
+What is the difference between shallow and deep copy 
+
+Design parking lot
+
+Implement hash table
+
+write a program to calculate the nearest power of two that is greater than or equal to the number that is given as a parameter
+* 
+
+Code to convert a hex string to int 
+
+Write an iterator to return nodes of a binary tree in order (as in a traversal).
+
+Given a string - Thisisawesome, print all the possible permutations of valid words formed from this string
+
+Given a tree with nodes that have a child pointer and a sibling pointer and some data field to hold a value, write a program to rearrange the tree such that all children of any node are sorted using some comparator function. The invariant was that all siblings should still remain siblings under the same parent.
+* 
+
+Given a binary tree return the level with maximum number of nodes - http://www.careercup.com/question?id=15424726
+
+Implement BitSet. 
+* 
+come up with a DS for table of contents of a book 
+* 
+How floating point computation is done in CPU ? 
+
+* Boggle
+* 
+
+Find the next largest int given a BST and a number.
+
+
+
+* prefix: build a trie. Super extra credit: how do you handle unicode? Scale trie. partition. redundant. durable. 
+
+* design s3 / dynamo
+* 
+implement malloc! 
+what is s_brk? memory allocators. get large block from malloc and manage it yourself. how will you deal with fragmentation. 
+
+* what is polymorphism
+* what does virtual do in c++? 
+* I asked him about hardware: max HDD size, typical # of CPU cores, CPU frequency, memory DIMM capacity.
+He knew most except he was incorrect with max HDD size – he thought he could buy 10TB HDD 
+
+* count(*) from count(col)
+
+* Evaluate infix expression. 
+
+* implement map and sorted amp
+
+*
+Implement a FloodFill algorithm (works like the paint bucket tool in MS Paint - basically you fill a bitmap of pixels with a solid color starting at a certain point until you fill an entire enclosed shape). 
+
+* compute the running average of the last N values submitted - use a circular buffer to keep the last N values. 
+
+
+* print phone number letters
+* thread safe blocking queue -- DONE
+* circular buffer. make thread safe -- DONE
+
+
+
+
+
+
+
+* Given a 1 TB file, parse out the 64 bit integers, sort them and write them back to file.
+

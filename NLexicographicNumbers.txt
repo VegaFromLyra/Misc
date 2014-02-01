@@ -1,0 +1,53 @@
+Given an integer N, print numbers from 1 to N in lexicographic order. 
+
+Details: To be implemented without using character conversion (or Strings). 
+
+Example: 
+N = 25 
+
+Print: 
+1 
+10 
+11 
+.. 
+19 
+2 
+20 
+21 
+.. 
+25 
+3 
+4 
+5 
+6 
+7 
+8
+
+  void Test(int N, int k) 
+  { 
+	if (k > N) 
+        {
+           return;
+        } 
+
+	for(int i = 0; i < 10; i++) 
+	{ 
+	   if (k <= N) 
+	   { 
+	 	cout<<k<<endl; 
+
+		k *= 10; 
+
+		Test(N, k); 
+
+		k /= 10; 
+
+		k++;
+  
+		if (k % 10 == 0) 
+                return; 
+	   }	 
+        } 
+   } 
+
+To call this use Test(25, 1), for example
